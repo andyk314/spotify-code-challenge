@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html ng-app="playlyticsApp">
+  <head>
+    <title>Playlytics</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-git2.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  </head>
+
+  <body ng-controller="AppCtrl">
+    <div class="search-box">
+      <input type="text" placeholder="Enter a song" ng-model="song">
+      <!-- <input type="text" placeholder="Enter a song" ng-model="song" ng-keyup="search($event)"> -->
+      <input type="submit" name="search" id="search" value="Search" class="btn btn-primary btn-xs" ng-click="search($event)">
+    </div>
+
+    <div class="spotify-queries" ng-show="tracks">Spotify Queries
+      <ul>
+        <li ng-repeat="track in tracks">
+          <span>
+            {{track.name}} (Popularity: {{track.popularity}}) (Duration: {{track.duration_ms | date: 'm:ss' }}) (Artist: {{track.artists[0].name}})
+          </span>
+          <button ng-click="addToPlayList(track)" class="fa fa-plus add-button"></button>
+        </li>
+      </ul>
+    </div>
+
+    <div class="my-playlist" ng-show="playList">My PlayList
+      <ul>
+        <li ng-repeat="track in playList">
+          <span>
+            {{track.name}} (Popularity: {{ track.popularity }}) (Duration: {{track.duration_ms | date: 'm:ss' }}) (Artist: {{track.artists[0].name}})
+          </span>
+          <button ng-click="removeFromPlayList(track)" class="fa fa-times remove-button"></button>
+        </li>
+      </ul>
+      <div class="playlistDuration">
+        Coolness Factor: {{ playlistCoolness | number:0 }}
+        <br>
+        Total Duration: {{ totalDuration | date: 'm:ss' }}
+      </div>
+    </div>
+
+  </body>
+</html>
