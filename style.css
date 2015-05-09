@@ -1,0 +1,9 @@
+body { background-color: #ccc;}
+
+.add-button { color: green; }
+.remove-button { color: red; }
+
+.search-box {
+  margin-top: 25px;
+  text-align: center;
+}
