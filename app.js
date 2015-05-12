@@ -1,7 +1,13 @@
-var playlyticsApp = angular.module('playlyticsApp', []);
+var playlyticsApp = angular.module('playlyticsApp', ['ui.sortable']);
 
 playlyticsApp.controller('AppCtrl', function ($scope, $http) {
   $scope.playList = JSON.parse(localStorage.getItem("playlist"))
+
+  $scope.sortableOptions = {
+    stop: function(e, ui) {
+      addToPlayListToLocalStorage($scope.playList)
+    }
+  }
 
   var calculateCoolnessFactor = function(playList) {
     var durationPopularity = 0
